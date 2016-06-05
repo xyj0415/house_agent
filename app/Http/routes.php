@@ -35,7 +35,7 @@ Route::get('/transaction', 'TransactionsController@index');
 Route::post('/transaction', 'TransactionsController@store');
 Route::post('/transaction/update', 'TransactionsController@update');
 
-Route::get('/message', 'MessageController@index');
+Route::get('/message', 'MessagesController@index');
 Route::auth();
 
 
