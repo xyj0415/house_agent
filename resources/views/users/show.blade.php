@@ -3,7 +3,7 @@
 @section('content')
 	<h2>Profile</h2>
 	<hr>
-	<table class="table table-bordered">
+	<table class="table table-bordered table-striped">
 		<tr>
 			<th>Type</th>
 			<td>
@@ -16,7 +16,7 @@
 				@if (($user->id == \Auth::User()->id) && (\Auth::User()->type == 'buyer'))
 					<form method="POST" action="/user/upgraderequest" style="display:inline">
 						{{ csrf_field() }}
-						<button type="submit" class="btn btn-link">Become a Seller</button>
+						<button type="submit" class="btn btn-primary">Become a Seller</button>
 					</form>
 				@endif
 			</td>

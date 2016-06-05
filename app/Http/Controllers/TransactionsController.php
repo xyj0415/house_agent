@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\House;
+use App\Message;
 use App\Transaction;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
 class TransactionsController extends Controller
 {
-    public function show()
+    public function index()
     {
         $transactions = Transaction::join('houses', 'transactions.house_id', '=', 'houses.id')
                                    ->where('buyer_id', \Auth::user()->id)
@@ -16,12 +19,21 @@ class TransactionsController extends Controller
                                    ->orwhere('agent_id', \Auth::user()->id)
                                    ->select('transactions.id', 'house_id', 'buyer_id', 'transactions.status as status', 'provider_id', 'agent_id')->get();
 
-        return view('transactions.show', compact('transactions'));
+        return view('transactions.index', compact('transactions'));
     }
 
     public function store(Request $request)
     {
     	Transaction::create($request->only(['house_id', 'buyer_id', 'status']));
+
+        House::find($request->input('house_id'))->update(['status' => 'transacting']);
+
+        $message = new Message;
+        $message->sender_id = 0;
+        $message->receiver_id = House::find($request->house_id)->agent_id;
+        $message->content = 'The buyer '. User::find($request->buyer_id)->name . ' wants to contact you! Please check in the transaction page.';
+        $message->hasread = 0;
+        $message->save();
 
     	flash()->success('Your request has been sent!', 'Please wait for the response.');
 

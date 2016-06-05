@@ -1,13 +1,25 @@
 @extends('layout')
 
 @section('content')
-
+	<form method="GET" class="form-horizontal">
+		<div class="form-group">
+			<label for="city" class="col-md-2 control-label">Choose City:</label>
+			<div class="col-md-10">
+				<select name="city" id="city">
+					<option value="shanghai">Shanghai</option>
+					<option value="beijing">Beijing</option>
+					<option value="guangzhou">Guangzhou</option>
+				</select>
+			</div>
+		</div>
+		<input type="submit" value="Search" class="btn btn-primary">
+	</form>
 	<table class="table table-striped">
 		<tr>
 			<th>Name</th>
 			<th>Price</th>
 		</tr>
-	
+
 		@foreach ($houses as $house)
 		<tr>
 			<td>
@@ -22,5 +34,4 @@
 		</tr>
 		@endforeach
 	</table>
-	
 @stop

@@ -9,8 +9,7 @@ class Flash
 		session()->flash('flash_message', compact('title', 'message', 'type'));
 	}
 
-
-	public function info ($title, $message)
+	public function info($title, $message)
 	{
 		return $this->create($title, $message, 'info');
 	}
@@ -19,7 +18,6 @@ class Flash
 	{
 		return $this->create($title, $message, 'success');
 	}
-
 
 	public function error($title, $message)
 	{
