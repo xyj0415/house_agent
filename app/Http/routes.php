@@ -31,9 +31,11 @@ Route::post('/user/buyerauth', 'UsersController@buyerAuth');
 Route::get('/user/{id}', 'UsersController@show');
 
 // Pages about transactions.
-Route::get('/transaction', 'TransactionsController@show');
+Route::get('/transaction', 'TransactionsController@index');
 Route::post('/transaction', 'TransactionsController@store');
 Route::post('/transaction/update', 'TransactionsController@update');
+
+Route::get('/message', 'MessagesController@index');
 Route::auth();
 
 

@@ -17,7 +17,7 @@
         <li><a href="/for_sell">Buy</a></li>
         <li><a href="/for_rent">Rent</a></li>
         <li class="dropdown">
-          
+
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sell<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/for_sell/create">Sell my house</a></li>
@@ -41,6 +41,7 @@
                   <ul class="dropdown-menu" role="menu">
                       <li><a href="/user/{{ Auth::user()->id }}">User Center</a></li>
                       <li><a href="/transaction">Transactions</a></li>
+                      <li><a href="/message">Messages</a></li>
                       @if (Auth::user()->type == 'agent')
                         <li><a href="/user/auth">Authentication</a></li>
                       @endif

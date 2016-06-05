@@ -10,7 +10,7 @@ use App\Http\Requests\HouseRequest;
 
 class HousesController extends Controller
 {
-     public function __construct()
+    public function __construct()
     {
         parent::__construct();
 

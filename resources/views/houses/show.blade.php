@@ -1,3 +1,4 @@
+
 @extends('layout')
 
 @section('content')
@@ -42,17 +43,18 @@
 					<td>{{ $house->agent->phone }}</td>
 				</tr>
 			</table>
-			@if ($house->status == 'available' && $user && $user->id != $house->provider_id && $user->type != 'agent')
+			@can('contact', $house)
 				<div align="center">
 					<form method="POST" action="/transaction">
 						{{ csrf_field() }}
 						<input type="hidden" name="house_id" value="{{ $house->id }}">
-						<input type="hidden" name="buyer_id" value="{{ $user->id }}">	
+						<input type="hidden" name="buyer_id" value="{{ $user->id }}">
 						<input type="hidden" name="status" value="buyer_to_agent">
 						<button type="submit" class="btn btn-primary">Contact</button>
 					</form>
 				</div>
-			@endif
+			@endcan
 		</div>
 	</div>
 @stop
+

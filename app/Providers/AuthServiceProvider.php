@@ -26,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        //
+        $gate->define('contact', function($user, $house) {
+            return ($house->status == 'available') && ($user) && ($user->id != $house->provider_id) && ($user->type != 'agent');
+        });
     }
 }
