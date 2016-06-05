@@ -16,6 +16,6 @@ class MessagesController extends Controller
 
     	$sent = Message::where('sender_id', \Auth::user()->id)->get();
 
-    	return view('message.index', compact('received', 'sent'));
+    	return view('messages.index', compact('received', 'sent'));
     }
 }

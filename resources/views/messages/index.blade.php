@@ -13,7 +13,7 @@
 			<div class="tab-content">
 				<div class="tab-pane in active" id="new">
 					<form class="form-horizontal" action="">
-						@include('message.send_form')
+						@include('messages.send_form')
 					</form>
 				</div>
 				<div class="tab-pane" id="check">
