@@ -18,7 +18,7 @@ class CreateMessagesTable extends Migration
             $table->foreign('sender_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('receiver_id');
             $table->foreign('receiver_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('title');
+            $table->string('subject');
             $table->text('content');
             $table->integer('hasread');
             $table->timestamps();

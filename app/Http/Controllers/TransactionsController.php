@@ -35,9 +35,9 @@ class TransactionsController extends Controller
 
         $message = new Message;
         $message->sender_id = 0;
-        $message->receiver_id = House::find($request->house_id)->agent_id;
-        $message->title = "Transaction Request";
-        $message->content = 'The buyer '. User::find($request->buyer_id)->name . ' wants to start a transaction! Please check in the transaction page.';
+        $message->receiver_id = House::find($request->input('house_id'))->agent_id;
+        $message->subject = "Transaction Request";
+        $message->content = 'The buyer '. User::find($request->input('buyer_id'))->name . ' wants to start a transaction! Please check in the transaction page.';
 
         $message->hasread = 0;
         $message->save();

@@ -36,6 +36,8 @@ Route::post('/transaction', 'TransactionsController@store');
 Route::post('/transaction/update', 'TransactionsController@update');
 
 Route::get('/message', 'MessagesController@index');
+Route::post('/message', 'MessagesController@store');
+Route::get('/message/{id}', 'MessagesController@show');
 Route::auth();
 
 

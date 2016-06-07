@@ -5,7 +5,9 @@
 	<title>Database Project</title>
 	<link rel="stylesheet" href="/css/libs.css">
   	<link rel="stylesheet" href="/css/app.css">
-	@yield('styles')
+  	<style>
+		@yield('styles')
+	</style>
 </head>
 <body>
 
@@ -18,9 +20,9 @@
 	<script src="/js/libs.js "></script>
 
 	@include('components.flash')
-
-	@yield('scripts')
-
+	<script>
+		@yield('scripts')
+	</script>
 	@include('components.footer')
 </body>
 </html>

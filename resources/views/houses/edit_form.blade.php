@@ -1,6 +1,5 @@
 {{ csrf_field() }}
 
-	
 <div class="form-group">
 	<label class="col-md-2 control-label" for="name">Name:</label>
 	<div class="col-md-10">

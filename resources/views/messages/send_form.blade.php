@@ -1,5 +1,12 @@
 {{ csrf_field() }}
 <div class="form-group">
+	<label for="sender" class="col-md-2 control-label">From:</label>
+	<div class="col-md-10">
+		<p class="form-control-static">{{ Auth::user()->name }}&lt;{{ Auth::user()->email }}&gt;</p>
+	</div>
+</div>
+
+<div class="form-group">
 	<label for="receiver" class="col-md-2 control-label">To:</label>
 	<div class="col-md-10">
 		<input type="text" name="receiver" id="receiver" class="form-control" value="{{ old('receiver') }}" required="required">
