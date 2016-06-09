@@ -121,7 +121,7 @@ class HousesController extends Controller
     	return view('houses.edit', compact('house', 'type'));
     }
 
-    public function update($type, $id, HouseRequest $request)
+    public function update($type, $id, Request $request)
     {
         $house = self::get_house($type, $id);
 

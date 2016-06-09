@@ -15,6 +15,9 @@ class Controller extends BaseController
 
     public function __construct()
     {
-    	view()->share('user', Auth::user());
+    	view()->share('user', \Auth::user());
+    	view()->share('unread_messages_num', \App\Message::where('hasread', 0)->where('receiver_id', \Auth::user()->id)->count());
+    	view()->share('unprocessed_user_auth_num', \App\User::where('type', 'unauthorizedseller')->count());
+    	view()->share('unprocessed_house_auth_num', \App\House::where('status', 'unauthenticated')->count());
     }
 }

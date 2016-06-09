@@ -2,8 +2,16 @@
 
 @section('content')
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="#buyer" data-toggle="tab">Authorize users</a></li>
-		<li><a href="#house" data-toggle="tab">Authenticate houses</a></li>
+		<li class="active"><a href="#buyer" data-toggle="tab">Authorize users
+			@if ($unprocessed_user_auth_num !=0)
+			 	({{ $unprocessed_user_auth_num }})
+			@endif
+		</a></li>
+		<li><a href="#house" data-toggle="tab">Authenticate houses
+			@if ($unprocessed_house_auth_num != 0)
+				({{ $unprocessed_house_auth_num }})
+			@endif
+		</a></li>
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane fade in active" id="buyer">

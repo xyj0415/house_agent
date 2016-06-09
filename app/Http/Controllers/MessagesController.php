@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class MessagesController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
     protected static function make_message(Request $request)
     {
         $message = New Message;

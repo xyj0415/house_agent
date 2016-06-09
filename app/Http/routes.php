@@ -11,7 +11,6 @@
 |
 */
 
-
 //Home Pages etc.
 Route::get('/', 'HomeController@index');
 Route::get('/index', 'HomeController@index');

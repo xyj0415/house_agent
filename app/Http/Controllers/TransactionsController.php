@@ -96,7 +96,7 @@ class TransactionsController extends Controller
             elseif ($status == 'both confirmed')
             {
                 $transaction->update(['status' => 'finished']);
-                House::find($transaction->house_id)->status = 'sold';
+                House::find($transaction->house_id)->update(['status' => 'sold']);
             }
         }
     	return redirect()->back();

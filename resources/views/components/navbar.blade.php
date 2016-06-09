@@ -35,19 +35,28 @@
           @else
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      {{ Auth::user()->name }} <span class="caret"></span>
+                      {{ $user->name }} <span class="caret"></span>
                   </a>
 
                   <ul class="dropdown-menu" role="menu">
                       <li><a href="/user/{{ Auth::user()->id }}">User Center</a></li>
                       <li><a href="/transaction">Transactions</a></li>
-                      <li><a href="/message">Messages @if (App\Message::where('hasread', 0)->where('receiver_id', Auth::user()->id)->count() != 0)
-                        ({{ App\Message::where('hasread', 0)->where('receiver_id', Auth::user()->id)->count() }})
-                      @endif
+                      <li><a href="/message">
+                              @if ($unread_messages_num != 0)
+                              <strong>Messages ({{ $unread_messages_num }})</strong>
+                              @else
+                                Messages
+                              @endif
                       </a></li>
                       <li><a href="/user/house">My houses</a></li>
                       @if (Auth::user()->type == 'agent')
-                        <li><a href="/user/auth">Auth</a></li>
+                        <li><a href="/user/auth">
+                          @if ($unprocessed_user_auth_num + $unprocessed_house_auth_num != 0)
+                          <strong>Auth ({{ $unprocessed_user_auth_num + $unprocessed_house_auth_num }})</strong>
+                          @else
+                            Auth
+                          @endif
+                        </a></li>
                       @endif
                       <li><a href="{{ url('/logout') }}">Logout</a></li>
                   </ul>
