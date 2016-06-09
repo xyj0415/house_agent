@@ -17,17 +17,6 @@ class TransactionsController extends Controller
         parent::__construct();
     }
 
-    protected static function make_notification(Request $request)
-    {
-        $message = new Message;
-        $message->sender_id = 0;
-        $message->receiver_id = House::find($request->input('house_id'))->agent_id;
-        $message->subject = "Transaction Request";
-        $message->content = 'The buyer '. User::find($request->input('buyer_id'))->name . ' wants to start a transaction! Please check in the transaction page.';
-        $message->hasread = 0;
-        return $message;
-    }
-
     public function index()
     {
         $transactions = Transaction::join('houses', 'transactions.house_id', '=', 'houses.id')

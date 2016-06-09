@@ -26,17 +26,6 @@ class HousesController extends Controller
         return House::ofType($type)->find($id);
     }
 
-    protected static function make_notification(Request $request)
-    {
-        $message = new Message;
-        $message->sender_id = 0;
-        $message->receiver_id = $request->input('agent_id');
-        $message->subject = "House Authentication Request";
-        $message->content = 'The seller '. User::find($request->input('provider_id'))->name . ' wants to ' . $request->input('type') . ' a house! Please check in the authentication page.';
-        $message->hasread = 0;
-        return $message;
-    }
-
     protected static function make_builder($builder, $request)
     {
         if ($request->input('selection') != 'all')
@@ -92,8 +81,7 @@ class HousesController extends Controller
     {
     	House::create($request->all());
 
-        $message = self::make_notification($request);
-        $message->save();
+        messageGen()->house_authentication($request);
 
     	flash()->success('Your request has been sent!', 'Please wait for the authentication.');
 

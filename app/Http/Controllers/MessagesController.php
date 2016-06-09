@@ -15,17 +15,6 @@ class MessagesController extends Controller
         parent::__construct();
     }
 
-    protected static function make_message(Request $request)
-    {
-        $message = New Message;
-        $message->sender_id = Auth::user()->id;
-        $message->receiver_id = User::where('email', $request->input('receiver'))->first()->id;
-        $message->subject = $request->input('subject');
-        $message->content = $request->input('content');
-        $message->hasread = 0;
-        return $message;
-    }
-
     public function index()
     {
     	$received = Message::where('receiver_id', Auth::user()->id)->get();
@@ -53,8 +42,7 @@ class MessagesController extends Controller
     		flash()->error('Error!', 'User does not exist!');
     		return redirect()->back();
     	}
-        $message = self::make_message($request);
-    	$message->save();
+        messageGen($request);
 
     	flash()->success('Success!', 'Your message has been sent!');
     	return redirect()->back();
