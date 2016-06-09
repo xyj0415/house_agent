@@ -28,27 +28,27 @@
 		<tr>
 			<th>Email</th>
 			<td>
-				@if ($user->id != $current_user->id && $current_user->type != 'agent')
-					You have no access.
-				@else
+				@can('see_profile', $user)
 					{{ $user->email }}
-				@endif
+				@else
+					You have no access.
+				@endcan
 			</td>
 		</tr>
 		<tr>
 			<th>Phone</th>
 			<td>
-				@if ($user->id != $current_user->id && $current_user->type != 'agent')
-					You have no access.
-				@else
+				@can('see_profile', $user)
 					{{ $user->phone }}
-				@endif
+				@else
+					You have no access.
+				@endcan
 			</td>
 		</tr>
 	</table>
 
-	@if ($user->id == $current_user->id)
+	@can('edit_profile', $user)
 		<a class="btn btn-primary" href="/user/{{ $user->id }}/edit">Edit Profile</a>
-	@endif
+	@endcan
 
 @stop
