@@ -26,7 +26,7 @@ class HousesController extends Controller
         return House::ofType($type)->find($id);
     }
 
-    protected static function make_notification(HouseRequest $request)
+    protected static function make_notification(Request $request)
     {
         $message = new Message;
         $message->sender_id = 0;

@@ -13,7 +13,7 @@
 			<th>Action</th>
 		</tr>
 		@foreach ($transactions as $transaction)
-			@if (!(($current_user == $transaction->house->provider) && ($transaction->status == 'buyer_to_agent')))
+			@can('see_transaction', $transaction)
 				<tr>
 					<td>
 						@if ($transaction->status == 'buyer_to_agent' || $transaction->status == 'agent to provider')
@@ -64,7 +64,7 @@
 						@endcan
 					</td>
 				</tr>
-			@endif
+			@endcan
 		@endforeach
 	</table>
 

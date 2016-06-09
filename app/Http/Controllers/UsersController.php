@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use Auth;
 use App\User;
 use App\House;
 use App\Message;
 use App\Transaction;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {

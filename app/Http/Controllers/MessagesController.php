@@ -14,7 +14,7 @@ class MessagesController extends Controller
     {
         parent::__construct();
     }
-    
+
     protected static function make_message(Request $request)
     {
         $message = New Message;

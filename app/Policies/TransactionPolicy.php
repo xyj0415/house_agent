@@ -30,6 +30,10 @@ class TransactionPolicy
         return ($status != 'finished') && ($status != 'cancelled');
     }
 
+    public function see_transaction(User $user, Transaction $transaction)
+    {
+        return !(self::is_provider($user, $transaction) && ($transaction->status == 'buyer_to_agent'));
+    }
 
     public function contact_provider(User $user, Transaction $transaction)
     {

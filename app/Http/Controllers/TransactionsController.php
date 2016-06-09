@@ -45,9 +45,7 @@ class TransactionsController extends Controller
 
         House::find($request->input('house_id'))->update(['status' => 'transacting']);
 
-        $message = self::make_notification($request);
-
-        $message->save();
+        messageGen()->start_transaction($request);
 
     	flash()->success('Your request has been sent!', 'Please wait for the response.');
 
