@@ -41,9 +41,13 @@
                   <ul class="dropdown-menu" role="menu">
                       <li><a href="/user/{{ Auth::user()->id }}">User Center</a></li>
                       <li><a href="/transaction">Transactions</a></li>
-                      <li><a href="/message">Messages</a></li>
+                      <li><a href="/message">Messages @if (App\Message::where('hasread', 0)->where('receiver_id', Auth::user()->id)->count() != 0)
+                        ({{ App\Message::where('hasread', 0)->where('receiver_id', Auth::user()->id)->count() }})
+                      @endif
+                      </a></li>
+                      <li><a href="/user/house">My houses</a></li>
                       @if (Auth::user()->type == 'agent')
-                        <li><a href="/user/auth">Authentication</a></li>
+                        <li><a href="/user/auth">Auth</a></li>
                       @endif
                       <li><a href="{{ url('/logout') }}">Logout</a></li>
                   </ul>

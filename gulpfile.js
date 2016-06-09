@@ -13,6 +13,6 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.sass('app.scss')
-       .scripts(['libs/sweetalert-dev.js', 'libs/jquery.min.js', 'libs/bootstrap.min.js'], './public/js/libs.js')
-       .styles([/*'libs/bootstrap.min.css', */'libs/sweetalert.css'], './public/css/libs.css');
+       .scripts(['libs/sweetalert-dev.js', 'libs/jquery.min.js', 'libs/bootstrap.min.js', 'libs/dropzone.js'], './public/js/libs.js')
+       .styles([/*'libs/bootstrap.min.css', */'libs/sweetalert.css', 'libs/dropzone.css'], './public/css/libs.css');
 });

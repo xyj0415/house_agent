@@ -11,6 +11,17 @@ use App\Http\Requests;
 
 class MessagesController extends Controller
 {
+    protected static function make_message(Request $request)
+    {
+        $message = New Message;
+        $message->sender_id = \Auth::user()->id;
+        $message->receiver_id = User::where('email', $request->input('receiver'))->first()->id;
+        $message->subject = $request->input('subject');
+        $message->content = $request->input('content');
+        $message->hasread = 0;
+        return $message;
+    }
+
     public function index()
     {
     	$received = Message::where('receiver_id', \Auth::user()->id)->get();
@@ -18,6 +29,7 @@ class MessagesController extends Controller
     	$sent = Message::where('sender_id', \Auth::user()->id)->get();
 
     	$message_unread_num = $notification_unread_num = 0;
+
     	foreach($received as $message)
     	{
     		if ($message->hasread == 0)
@@ -37,13 +49,7 @@ class MessagesController extends Controller
     		flash()->error('Error!', 'User does not exist!');
     		return redirect()->back();
     	}
-    	$message = New Message;
-
-    	$message->sender_id = \Auth::user()->id;
-    	$message->receiver_id = User::where('email', $request->input('receiver'))->first()->id;
-    	$message->subject = $request->input('subject');
-    	$message->content = $request->input('content');
-    	$message->hasread = 0;
+        $message = self::make_message($request);
     	$message->save();
 
     	flash()->success('Success!', 'Your message has been sent!');
@@ -52,9 +58,16 @@ class MessagesController extends Controller
 
     public function show($id)
     {
-    	Message::find($id)->update(['hasread' => 1]);
-    	$message = Message::find($id);
-
+        $message = Message::find($id);
+        if ($message == null)
+        {
+            flash()->error('Error!', 'Message does not exist!');
+            return redirect()->back();
+        }
+        if (\Auth::user()->id == $message->receiver_id)
+        {
+        	Message::find($id)->update(['hasread' => 1]);
+        }
     	return view('messages.show', compact('message'));
     }
 }

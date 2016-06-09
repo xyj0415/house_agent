@@ -1,7 +1,7 @@
 @inject('cities', 'App\Http\Utilities\City')
 
 {{ csrf_field() }}
-<input type="hidden" name="provider_id" value="{{$user->id}}">
+<input type="hidden" name="provider_id" value="{{ $user->id }}">
 <input type="hidden" name="type" value="{{ $type }}">
 <input type="hidden" name="status" value="unauthenticated">
 
@@ -42,7 +42,11 @@
 <hr>
 
 <div class="form-group">
-	<label for="price" class="col-md-2 control-label">Price:</label>
+	<label for="price" class="col-md-2 control-label">@if ($type == 'sell')
+		Price:
+	@else
+		Price/month:
+	@endif</label>
 	<div class="col-md-10">
 		<input type="text" name="price" id="price" class="form-control" value="{{ old('price') }}" required="required">
 	</div>

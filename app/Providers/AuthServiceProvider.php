@@ -13,7 +13,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        \App\House::class => \App\Policies\HousePolicy::class,
+        \App\Transaction::class => \App\Policies\TransactionPolicy::class
     ];
 
     /**
@@ -25,9 +26,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(GateContract $gate)
     {
         $this->registerPolicies($gate);
-
-        $gate->define('contact', function($user, $house) {
-            return ($house->status == 'available') && ($user) && ($user->id != $house->provider_id) && ($user->type != 'agent');
-        });
     }
 }

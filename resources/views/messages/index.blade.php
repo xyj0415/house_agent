@@ -3,15 +3,18 @@
 @section('styles')
 	.message:hover
 	{
-		background-color:#DDD;
+		background-color: #DDD;
+		cursor: pointer;
+	}
+	.unread
+	{
+		font-weight: bold;
 	}
 	a
 	{
 		color:black;
 	}
 @stop
-
-@inject($user, 'App\User')
 
 @section('content')
 	<div class="row">
@@ -36,18 +39,18 @@
 		</div>
 		<div class="col-md-10">
 			<div class="tab-content">
-				<div class="tab-pane" id="new">
+				<div class="tab-pane fade" id="new">
 					<form class="form-horizontal" method="POST" action="/message">
 						@include('messages.send_form')
 					</form>
 				</div>
-				<div class="tab-pane in active" id="check">
+				<div class="tab-pane fade in active" id="check">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#inbox" data-toggle="tab">Inbox</a></li>
 						<li><a href="#outbox" data-toggle="tab">Outbox</a></li>
 					</ul>
 					<div class="tab-content">
-						<div class="tab-pane in active" id="inbox">
+						<div class="tab-pane fade in active" id="inbox">
 							<table class="table">
 								<tr>
 									<th>From</th>
@@ -56,27 +59,37 @@
 								</tr>
 								@foreach ($received as $message)
 									@if ($message->sender_id != 0)
-										<tr class="message">
+										<tr class="message
 											@if ($message->hasread == 0)
-												<td class="col-md-2"><strong><a href="/user/{{ $user::find($message->sender_id)->id }}">{{ $user::find($message->sender_id)->name }}</a></strong></td>
-												<td class="col-md-7"><strong><a href="/message/{{ $message->id }}">{{ $message->subject }}</a></strong></td>
-												<td class="col-md-3"><strong>{{ $message->created_at }}</strong></td>
-											@else
-												<td class="col-md-2"><a href="/user/{{ $user::find($message->sender_id)->id }}">{{ $user::find($message->sender_id)->name }}</a></td>
-												<td class="col-md-7"><a href="/message/{{ $message->id }}">{{ $message->subject }}</a></td>
-												<td class="col-md-3">{{ $message->created_at }}</td>
-											@endif
+												unread
+											@endif" onclick="location.href='/message/{{ $message->id }}'">
+											<td class="col-md-2">{{ App\User::find($message->sender_id)->name }}</td>
+											<td class="col-md-7">{{ $message->subject }}</td>
+											<td class="col-md-3">{{ $message->created_at }}</td>
 										</tr>
 									@endif
 								@endforeach
 							</table>
 						</div>
-						<div class="tab-pane" id="outbox">
-							bbb
+						<div class="tab-pane fade" id="outbox">
+							<table class="table">
+								<tr>
+									<th>To</th>
+									<th>Subject</th>
+									<th>Time</th>
+								</tr>
+								@foreach ($sent as $message)
+									<tr class="message" onclick="location.href='/message/{{ $message->id }}'">
+										<td class="col-md-2">{{ App\User::find($message->receiver_id)->name }}</td>
+										<td class="col-md-7">{{ $message->subject }}</td>
+										<td class="col-md-3">{{ $message->created_at }}</td>
+									</tr>
+								@endforeach
+							</table>
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane" id="notification">
+				<div class="tab-pane fade" id="notification">
 					<table class="table">
 						<tr>
 							<th>Subject</th>
@@ -84,14 +97,12 @@
 						</tr>
 						@foreach ($received as $message)
 							@if ($message->sender_id == 0)
-								<tr class="message">
+								<tr class="message
 									@if ($message->hasread == 0)
-										<td class="col-md-3"><strong><a href="/message/{{ $message->id }}">{{ $message->subject }}</strong></a></td>
-										<td class="col-md-9"><strong>{{ $message->created_at }}</strong></td>
-									@else
-										<td class="col-md-3"><a href="/message/{{ $message->id }}">{{ $message->subject }}</a></td>
-										<td class="col-md-9">{{ $message->created_at }}</td>
-									@endif
+										unread
+									@endif" onclick="location.href='/message/{{ $message->id }}'">
+									<td class="col-md-9">{{ $message->subject }}</td>
+									<td class="col-md-3">{{ $message->created_at }}</td>
 								</tr>
 							@endif
 						@endforeach

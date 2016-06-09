@@ -7,7 +7,7 @@
 		<tr>
 			<th>Type</th>
 			<td>
-				@if ($user->type != 'unauthorizedseller')	
+				@if ($user->type != 'unauthorizedseller')
 					{{ $user->type }}
 				@else
 					buyer (Waiting for authorization...)

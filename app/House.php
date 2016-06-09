@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class House extends Model
 {
-     protected $fillable = [
+    protected $fillable = [
         'provider_id',
         'agent_id',
         'status',

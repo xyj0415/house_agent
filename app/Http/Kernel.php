@@ -44,12 +44,17 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'agent' => \App\Http\Middleware\CheckAgent::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'seller' => \App\Http\Middleware\CheckSeller::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+
+        /**
+         * User defined middlewares
+         */
+
+        'agent' => \App\Http\Middleware\CheckAgent::class,
+        'seller' => \App\Http\Middleware\CheckSeller::class,
     ];
 }

@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Database Project</title>
-	<link rel="stylesheet" href="/css/libs.css">
   	<link rel="stylesheet" href="/css/app.css">
+	<link rel="stylesheet" href="/css/libs.css">
   	<style>
 		@yield('styles')
 	</style>
@@ -18,7 +18,6 @@
 	</div>
 
 	<script src="/js/libs.js "></script>
-
 	@include('components.flash')
 	<script>
 		@yield('scripts')

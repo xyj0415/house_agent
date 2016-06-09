@@ -12,6 +12,7 @@ class EncryptCookies extends BaseEncrypter
      * @var array
      */
     protected $except = [
-        //
+        // Cookies are NOT used in this DB project.
+        // In another project(Human-Computer Interface) my teammate used javascript to set cookie but it's so silly because I have to put the names of those cookies in this array and the project will be vulnerable then.
     ];
 }

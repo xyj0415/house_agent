@@ -21,26 +21,36 @@ Route::get('/contact', 'HomeController@contact');
 
 // Pages about houses.
 Route::resource('for_{type}', 'HousesController', ['parameters' => ['for_{type}' => 'id']]);
+Route::post('for_{type}/{id}/addphoto', 'HousesController@addPhoto');
+
 
 // Pages about users.
 Route::get('/user/transaction', 'UsersController@transaction');
 Route::post('/user/upgraderequest', 'UsersController@upgradeRequest');
+Route::get('user/house', 'UsersController@showHouse');
 Route::get('/user/auth', 'UsersController@auth');
-Route::post('/user/houseauth', 'UsersController@houseAuth');
-Route::post('/user/buyerauth', 'UsersController@buyerAuth');
+Route::post('/user/auth', 'UsersController@checkAuth');
 Route::get('/user/{id}', 'UsersController@show');
+Route::get('/user/{id}/edit', 'UsersController@edit');
+
 
 // Pages about transactions.
 Route::get('/transaction', 'TransactionsController@index');
 Route::post('/transaction', 'TransactionsController@store');
 Route::post('/transaction/update', 'TransactionsController@update');
 
+
+// Pages about messages.
 Route::get('/message', 'MessagesController@index');
 Route::post('/message', 'MessagesController@store');
 Route::get('/message/{id}', 'MessagesController@show');
+
+
+// Auth pages.
 Route::auth();
 
 
+// Inexistent pages.
 Route::get('{foo}/{foo1?}/{foo2?}/{foo3?}/{foo4?}', function() {
 	flash()->warning('The page does not exist!',' ');
 	return redirect()->back();

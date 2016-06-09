@@ -2,7 +2,7 @@
 
 function flash($title = null, $message = null)
 {
-	$flash = app('App\Http\Flash');
+	$flash = app('App\Http\Utilities\Flash');
 
 	if (func_num_args() == 0)
 	{

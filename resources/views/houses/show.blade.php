@@ -1,34 +1,101 @@
-
 @extends('layout')
+
+@section('styles')
+	.gray-text
+	{
+		color: #999;
+	}
+
+	.big_image
+	{
+		height:500px;
+		width:800px;
+	}
+	.thumbnail
+	{
+		height: 100px;
+		width: 100px;
+		display: inline-block;
+	}
+	.thumbnail:hover
+	{
+		cursor: pointer;
+	}
+@stop
 
 @section('content')
 	<div class="row">
 		<div class="col-md-9">
 			<h1>
 				{{ $house->name }}
-				@if ($house->status != 'available')
-					<strong style="color:red">(Unavailable!)</strong>
-				@endif
 			</h1>
-			<h3>{{ $house->address }}, {{ $house->district }}, {{ $house->city }}</h3>
-			<h2>
-				${{ number_format($house->price) }}
-				@if($house->type == 'rent')
-					/ month
-				@endif
-			</h2>
-
-			<hr>
-
-			<div class="description" style="white-space:pre">{{ nl2br($house->description) }}</div>
-
-			@if ($user && $user->id == $house->provider_id)
-				<a href="/for_{{ $type }}/{{ $house->id }}/edit" type="button" class="btn btn-primary">Edit the information</a>
+			@if ($images->count() != 0)
+				<hr>
+				<img class="big_image" id="image_holder" src="{{ $images->first()->path}}">
+				@foreach ($images as $image)
+					<img class="thumbnail" src="{{ $image->path }}" onclick="show(this)">
+				@endforeach
 			@endif
+			<hr>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-2">
+							<p class="gray-text">Price:</p>
+						</div>
+						<div class="col-md-10">
+							<p>
+								${{ number_format($house->price) }}
+								@if($house->type == 'rent')
+									/ month
+								@endif
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<p class="gray-text">Price/m<sup>2</sup>:</p>
+						</div>
+						<div class="col-md-10">
+							<p>
+								${{ number_format(round($house->price / $house->area)) }}/m<sup>2</sup>
+								@if($house->type == 'rent')
+									/ month
+								@endif
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-2">
+							<p class="gray-text">Area:</p>
+						</div>
+						<div class="col-md-10">
+							<p>{{ $house->area }}m<sup>2</sup></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<p class="gray-text">Address:</p>
+						</div>
+						<div class="col-md-10">
+							<p>{{ $house->address }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="description" style="white-space:pre">{{ nl2br($house->description) }}</div>
+			@can('edit', $house)
+				<a href="/for_{{ $type }}/{{ $house->id }}/edit" type="button" class="btn btn-primary">Edit the information</a>
+				<form class="dropzone" method="POST" action="/for_{{ $type }}/{{ $house->id }}/addphoto">
+					{{ csrf_field() }}
+				</form>
+			@endcan
 		</div>
 		<div class="col-md-3">
 			<h3>Agent information</h3>
-
 			<table class="table table-bordered">
 				<tr>
 					<th>Name</th>
@@ -53,8 +120,19 @@
 						<button type="submit" class="btn btn-primary">Contact</button>
 					</form>
 				</div>
+			@else
+				<div align="center">
+					<button class="btn disabled">House Unavailable</button>
+				</div>
 			@endcan
 		</div>
 	</div>
 @stop
 
+@section('scripts')
+	function show(image)
+	{
+		var path = image.getAttribute('src');
+		document.getElementById("image_holder").setAttribute("src", path);
+	}
+@stop

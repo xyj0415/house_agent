@@ -10,7 +10,7 @@
 			<div class="col-md-10">
 				<p class="form-control-static">
 					@if ($message->sender_id != 0)
-						{{ $user::find($message->sender_id)->name }}&lt;{{ $user::find($message->sender_id)->email }}&gt;
+						<a href="/user/{{ $message->sender_id }}">{{ $user::find($message->sender_id)->name }}</a>&lt;{{ $user::find($message->sender_id)->email }}&gt;
 					@else
 						System Notification
 					@endif
@@ -21,7 +21,7 @@
 		<div class="form-group">
 			<label for="receiver" class="col-md-2 control-label">To:</label>
 			<div class="col-md-10">
-				<p class="form-control-static">{{ $user::find($message->receiver_id)->name }}&lt;{{ $user::find($message->receiver_id)->email }}&gt;</p>
+				<p class="form-control-static"><a href="/user/{{ $message->receiver_id }}">{{ $user::find($message->receiver_id)->name }}</a>&lt;{{ $user::find($message->receiver_id)->email }}&gt;</p>
 			</div>
 		</div>
 
