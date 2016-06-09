@@ -21,62 +21,12 @@
 	<div class="tab-content">
 		<div class="tab-pane fade in active" id="bought">
 			@foreach ($bought as $house)
-				<div class="house" onclick="location.href='/for_{{ $house->type }}/{{ $house->id }}'">
-					<div class="row">
-						<div class="col-md-3">
-							<img class="index-image" src="/images/5.jpg" alt="">
-						</div>
-						<div class="col-md-6">
-							<h3>{{ $house->name }}</h3>
-							<p>
-								<span>{{ $house->area }}m<sup>2</sup></span>
-								&nbsp;&nbsp;|&nbsp;&nbsp;
-								<span>built in 2009</span>
-								@if ($house->type == 'sell')
-									&nbsp;&nbsp;|&nbsp;&nbsp;<span>${{ round($house->price / $house->area) }}/m<sup>2</sup></span>
-								@endif
-							</p>
-						</div>
-						<div class="col-md-3">
-							<h3 style="color:DarkOrange;">
-								${{ number_format($house->price) }}
-								@if ($house->type == 'rent')
-									/month
-								@endif
-							</h3>
-						</div>
-					</div>
-				</div>
+				@include('components.single_house')
 			@endforeach
 		</div>
 		<div class="tab-pane fade" id="sold">
 			@foreach ($sold as $house)
-				<div class="house" onclick="location.href='/for_{{ $house->type }}/{{ $house->id }}'">
-					<div class="row">
-						<div class="col-md-3">
-							<img class="index-image" src="/images/5.jpg" alt="">
-						</div>
-						<div class="col-md-6">
-							<h3>{{ $house->name }}</h3>
-							<p>
-								<span>{{ $house->area }}m<sup>2</sup></span>
-								&nbsp;&nbsp;|&nbsp;&nbsp;
-								<span>built in 2009</span>
-								@if ($house->type == 'sell')
-									&nbsp;&nbsp;|&nbsp;&nbsp;<span>${{ round($house->price / $house->area) }}/m<sup>2</sup></span>
-								@endif
-							</p>
-						</div>
-						<div class="col-md-3">
-							<h3 style="color:DarkOrange;">
-								${{ number_format($house->price) }}
-								@if ($house->type == 'rent')
-									/month
-								@endif
-							</h3>
-						</div>
-					</div>
-				</div>
+				@include('components.single_house')
 			@endforeach
 		</div>
 	</div>
