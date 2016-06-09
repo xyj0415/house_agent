@@ -1,7 +1,7 @@
 @inject('cities', 'App\Http\Utilities\City')
 
 {{ csrf_field() }}
-<input type="hidden" name="provider_id" value="{{ $user->id }}">
+<input type="hidden" name="provider_id" value="{{ $current_user->id }}">
 <input type="hidden" name="type" value="{{ $type }}">
 <input type="hidden" name="status" value="unauthenticated">
 

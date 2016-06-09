@@ -35,11 +35,11 @@
           @else
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      {{ $user->name }} <span class="caret"></span>
+                      {{ $current_user->name }} <span class="caret"></span>
                   </a>
 
                   <ul class="dropdown-menu" role="menu">
-                      <li><a href="/user/{{ Auth::user()->id }}">User Center</a></li>
+                      <li><a href="/user/{{ $current_user->id }}">User Center</a></li>
                       <li><a href="/transaction">Transactions</a></li>
                       <li><a href="/message">
                               @if ($unread_messages_num != 0)
@@ -49,7 +49,7 @@
                               @endif
                       </a></li>
                       <li><a href="/user/house">My houses</a></li>
-                      @if (Auth::user()->type == 'agent')
+                      @if ($current_user->type == 'agent')
                         <li><a href="/user/auth">
                           @if ($unprocessed_user_auth_num + $unprocessed_house_auth_num != 0)
                           <strong>Auth ({{ $unprocessed_user_auth_num + $unprocessed_house_auth_num }})</strong>

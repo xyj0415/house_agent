@@ -13,7 +13,7 @@
 			<th>Action</th>
 		</tr>
 		@foreach ($transactions as $transaction)
-			@if (!((\Auth::user() == $transaction->house->provider) && ($transaction->status == 'buyer_to_agent')))
+			@if (!(($current_user == $transaction->house->provider) && ($transaction->status == 'buyer_to_agent')))
 				<tr>
 					<td>
 						@if ($transaction->status == 'buyer_to_agent' || $transaction->status == 'agent to provider')

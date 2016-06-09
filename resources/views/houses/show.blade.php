@@ -124,7 +124,7 @@
 					<form method="POST" action="/transaction">
 						{{ csrf_field() }}
 						<input type="hidden" name="house_id" value="{{ $house->id }}">
-						<input type="hidden" name="buyer_id" value="{{ $user->id }}">
+						<input type="hidden" name="buyer_id" value="{{ $current_user->id }}">
 						<input type="hidden" name="status" value="buyer_to_agent">
 						<button type="submit" class="btn btn-primary">Contact</button>
 					</form>

@@ -146,6 +146,7 @@ class HousesController extends Controller
 
         $image->house_id = $id;
         $image->path = '/images/' . $name;
+
         $image->save();
 
         return redirect()->back();

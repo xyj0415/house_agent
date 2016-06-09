@@ -13,7 +13,7 @@
 					buyer (Waiting for authorization...)
 				@endif
 
-				@if (($user->id == \Auth::User()->id) && (\Auth::User()->type == 'buyer'))
+				@if (($user->id == $current_user->id) && ($current_user->type == 'buyer'))
 					<form method="POST" action="/user/upgraderequest" style="display:inline">
 						{{ csrf_field() }}
 						<button type="submit" class="btn btn-primary">Become a Seller</button>
@@ -28,7 +28,7 @@
 		<tr>
 			<th>Email</th>
 			<td>
-				@if ($user->id != \Auth::User()->id && \Auth::User()->type != 'agent')
+				@if ($user->id != $current_user->id && $current_user->type != 'agent')
 					You have no access.
 				@else
 					{{ $user->email }}
@@ -38,7 +38,7 @@
 		<tr>
 			<th>Phone</th>
 			<td>
-				@if ($user->id != \Auth::User()->id && \Auth::User()->type != 'agent')
+				@if ($user->id != $current_user->id && $current_user->type != 'agent')
 					You have no access.
 				@else
 					{{ $user->phone }}
@@ -47,7 +47,7 @@
 		</tr>
 	</table>
 
-	@if ($user->id == \Auth::User()->id)
+	@if ($user->id == $current_user->id)
 		<a class="btn btn-primary" href="/user/{{ $user->id }}/edit">Edit Profile</a>
 	@endif
 
