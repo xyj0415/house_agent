@@ -19,7 +19,7 @@
 							<form method="POST" action="/user/auth">
 								{{ csrf_field() }}
 								<input type="hidden" name="user_id" value="{{ $user->id }}">
-								<input type="hidden" name="action" value="user">
+								<input type="hidden" name="type" value="user">
 								<button class="btn btn-primary" name="action" value="agree">Authorize</button>
 								<button class="btn btn-primary" name="action" value="reject">Reject</button>
 							</form>
@@ -43,7 +43,7 @@
 							<form method="POST" action="/user/auth">
 								{{ csrf_field() }}
 								<input type="hidden" name="house_id" value="{{ $house->id }}">
-								<input type="hidden" name="action" value="house">
+								<input type="hidden" name="type" value="house">
 								<button class="btn btn-primary" name="action" value="agree">Authenticate</button>
 								<button class="btn btn-primary" name="action" value="reject">Reject</button>
 							</form>

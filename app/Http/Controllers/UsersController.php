@@ -55,9 +55,9 @@ class UsersController extends Controller
 
     public function checkAuth(Request $request)
     {
+        $type = $request->get('type');
         $action = $request->get('action');
-
-        if ($action == 'user')
+        if ($type == 'user')
         {
             $user_id = $request->get('user_id');
 
@@ -66,7 +66,7 @@ class UsersController extends Controller
             else if ($action == 'reject')
                 User::find($user_id)->update(['type' => 'buyer']);
         }
-        else if ($action = 'house')
+        else if ($type == 'house')
         {
             $house_id = $request->get('house_id');
 
