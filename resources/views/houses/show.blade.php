@@ -88,9 +88,18 @@
 			<hr>
 			<div class="description" style="white-space:pre">{{ nl2br($house->description) }}</div>
 			@can('edit', $house)
-				<a href="/for_{{ $type }}/{{ $house->id }}/edit" type="button" class="btn btn-primary">Edit the information</a>
+				<a href="/for_{{ $type }}/{{ $house->id }}/edit" type="button" class="btn btn-primary">Edit information</a>
+
 				<form class="dropzone" method="POST" action="/for_{{ $type }}/{{ $house->id }}/addphoto">
 					{{ csrf_field() }}
+				</form>
+			@endcan
+
+			@can('delete', $house)
+				<form method="POST" action="/for_{{ $type }}/{{ $house->id }}">
+					{{ method_field('DELETE') }}
+					{{ csrf_field() }}
+					<button type="submit" class="btn btn-danger">Remove house</button>
 				</form>
 			@endcan
 		</div>
@@ -121,9 +130,11 @@
 					</form>
 				</div>
 			@else
-				<div align="center">
-					<button class="btn disabled">House Unavailable</button>
-				</div>
+				@if ($house->status != 'available')
+					<div align="center">
+						<button class="btn disabled">House Unavailable</button>
+					</div>
+				@endif
 			@endcan
 		</div>
 	</div>

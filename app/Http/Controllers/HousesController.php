@@ -150,4 +150,12 @@ class HousesController extends Controller
 
         return redirect()->back();
     }
+
+    public function destroy($type, $id)
+    {
+        $house = self::get_house($type, $id);
+        $house->update(['status' => 'removed']);
+
+        return redirect()->back();
+    }
 }

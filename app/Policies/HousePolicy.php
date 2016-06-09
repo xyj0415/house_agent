@@ -15,6 +15,11 @@ class HousePolicy
         return $user->id == $house->provider_id;
     }
 
+    public function delete(User $user, House $house)
+    {
+    	return ($user->id == $house->provider_id) && ($house->status == 'available');
+    }
+
     public function contact(User $user, House $house)
     {
         return ($house->status == 'available') && ($user->id != $house->provider_id) && ($user->type != 'agent');
