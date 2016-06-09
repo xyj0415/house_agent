@@ -90,6 +90,8 @@
 						<div class="col-md-6">
 							<h3>{{ $house->name }}</h3>
 							<p>
+								<span>{{ ucfirst($house->status) }}</span>
+								&nbsp;&nbsp;|&nbsp;&nbsp;
 								<span>{{ $house->area }}m<sup>2</sup></span>
 								&nbsp;&nbsp;|&nbsp;&nbsp;
 								<span>built in 2009</span>

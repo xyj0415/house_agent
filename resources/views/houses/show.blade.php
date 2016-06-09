@@ -27,7 +27,7 @@
 	<div class="row">
 		<div class="col-md-9">
 			<h1>
-				{{ $house->name }}
+				{{ $house->name }} <small>({{ $house->status }})</small>
 			</h1>
 			@if ($images->count() != 0)
 				<hr>
