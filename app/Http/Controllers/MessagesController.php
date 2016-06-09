@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\Message;
-
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class MessagesController extends Controller
 {
     protected static function make_message(Request $request)
     {
         $message = New Message;
-        $message->sender_id = \Auth::user()->id;
+        $message->sender_id = Auth::user()->id;
         $message->receiver_id = User::where('email', $request->input('receiver'))->first()->id;
         $message->subject = $request->input('subject');
         $message->content = $request->input('content');
@@ -24,9 +23,9 @@ class MessagesController extends Controller
 
     public function index()
     {
-    	$received = Message::where('receiver_id', \Auth::user()->id)->get();
+    	$received = Message::where('receiver_id', Auth::user()->id)->get();
 
-    	$sent = Message::where('sender_id', \Auth::user()->id)->get();
+    	$sent = Message::where('sender_id', Auth::user()->id)->get();
 
     	$message_unread_num = $notification_unread_num = 0;
 
@@ -64,7 +63,7 @@ class MessagesController extends Controller
             flash()->error('Error!', 'Message does not exist!');
             return redirect()->back();
         }
-        if (\Auth::user()->id == $message->receiver_id)
+        if (Auth::user()->id == $message->receiver_id)
         {
         	Message::find($id)->update(['hasread' => 1]);
         }

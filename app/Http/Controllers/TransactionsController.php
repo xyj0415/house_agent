@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\House;
 use App\Message;
@@ -31,9 +32,9 @@ class TransactionsController extends Controller
     {
         $transactions = Transaction::join('houses', 'transactions.house_id', '=', 'houses.id')
                                    ->where('transactions.status', '<>', 'cancelled')
-                                   ->where('buyer_id', \Auth::user()->id)
-                                   ->orwhere('provider_id', \Auth::user()->id)
-                                   ->orwhere('agent_id', \Auth::user()->id)
+                                   ->where('buyer_id', Auth::user()->id)
+                                   ->orwhere('provider_id', Auth::user()->id)
+                                   ->orwhere('agent_id', Auth::user()->id)
                                    ->select('transactions.id', 'house_id', 'buyer_id', 'transactions.status as status', 'provider_id', 'agent_id')->get();
         return view('transactions.index', compact('transactions'));
     }
@@ -61,7 +62,7 @@ class TransactionsController extends Controller
         if ($request->action == 'cancel')
         {
             $transaction->update(['status' => 'cancelled']);
-            
+
             House::find($transaction->house_id)->update(['status' => 'available']);
         }
         elseif ($request->action == 'continue')
@@ -79,7 +80,7 @@ class TransactionsController extends Controller
         {
             if ($status == 'transacting')
             {
-                if (\Auth::user()->id == $transaction->buyer_id)
+                if (Auth::user()->id == $transaction->buyer_id)
                 {
                     $transaction->update(['status' => 'buyer confirmed']);
                 }

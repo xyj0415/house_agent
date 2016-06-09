@@ -102,7 +102,7 @@ class HousesController extends Controller
 
     public function show($type, $id)
     {
-    	$house = House::ofType($type)->find($id);
+        $house = self::get_house($type, $id);
         $images = Image::where('house_id', $id)->get();
 
     	return view('houses.show', compact('house', 'type', 'images'));
@@ -110,7 +110,7 @@ class HousesController extends Controller
 
     public function edit($type, $id)
     {
-    	$house = House::ofType($type)->find($id);
+        $house = self::get_house($type, $id);
 
         if (\Auth::user()->cannot('edit', $house))
         {
@@ -123,7 +123,7 @@ class HousesController extends Controller
 
     public function update($type, $id, HouseRequest $request)
     {
-    	$house = House::ofType($type)->find($id);
+        $house = self::get_house($type, $id);
 
     	$house->update($request->all());
 
