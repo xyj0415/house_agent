@@ -203,6 +203,16 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /**
+         * User defined aliases
+         */
+
+        'Image' => App\Image::class,
+        'House' => App\House::class,
+        'Message' => App\Message::class,
+        'Transaction' => App\Transaction::class,
+        'User' => App\User::class,
+
     ],
 
 ];

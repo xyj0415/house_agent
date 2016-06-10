@@ -14,14 +14,14 @@ function flash($title = null, $message = null)
 
 function messageGen($request = null)
 {
-	$message_generator = app('App\Http\Utilities\MessageGenerator');
+	$generator = app('App\Http\Utilities\MessageGenerator');
 
 	if (func_num_args() == 0)
 	{
-		return $message_generator;
+		return $generator;
 	}
 
-	return $message_generator->make_message($request);
+	return $generator->make_message($request);
 }
 
 ?>

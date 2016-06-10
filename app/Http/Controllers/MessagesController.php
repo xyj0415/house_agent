@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\User;
-use App\Message;
+use Gate;
+use User;
+use Message;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class MessagesController extends Controller
     public function __construct()
     {
         parent::__construct();
+        $this->middleware('auth');
     }
 
     public function index()
@@ -54,6 +56,11 @@ class MessagesController extends Controller
         if ($message == null)
         {
             flash()->error('Error!', 'Message does not exist!');
+            return redirect()->back();
+        }
+        if (Auth::user()->cannot('see_message', $message))
+        {
+            flash()->warning('No access!', 'You are not allowed to see this message.');
             return redirect()->back();
         }
         if (Auth::user()->id == $message->receiver_id)

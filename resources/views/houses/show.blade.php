@@ -125,14 +125,14 @@
 						{{ csrf_field() }}
 						<input type="hidden" name="house_id" value="{{ $house->id }}">
 						<input type="hidden" name="buyer_id" value="{{ $current_user->id }}">
-						<input type="hidden" name="status" value="buyer_to_agent">
+						<input type="hidden" name="status" value="buyer to agent">
 						<button type="submit" class="btn btn-primary">Contact</button>
 					</form>
 				</div>
 			@else
 				@if ($house->status != 'available')
 					<div align="center">
-						<button class="btn disabled">House Unavailable</button>
+						<button class="btn disabled">Contact</button>
 					</div>
 				@endif
 			@endcan

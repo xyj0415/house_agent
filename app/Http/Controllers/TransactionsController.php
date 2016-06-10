@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\User;
-use App\House;
-use App\Message;
-use App\Transaction;
+use User;
+use House;
+use Message;
+use Transaction;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -15,6 +15,7 @@ class TransactionsController extends Controller
     public function __construct()
     {
         parent::__construct();
+        $this->middleware('auth');
     }
 
     public function index()
@@ -54,7 +55,7 @@ class TransactionsController extends Controller
         }
         elseif ($request->action == 'continue')
         {
-            if ($status == 'buyer_to_agent')
+            if ($status == 'buyer to agent')
             {
                 $transaction->update(['status' => 'agent to provider']);
             }

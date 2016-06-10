@@ -63,7 +63,7 @@
 											@if ($message->hasread == 0)
 												unread
 											@endif" onclick="location.href='/message/{{ $message->id }}'">
-											<td class="col-md-2">{{ App\User::find($message->sender_id)->name }}</td>
+											<td class="col-md-2">{{ $message->sender->name }}</td>
 											<td class="col-md-7">{{ $message->subject }}</td>
 											<td class="col-md-3">{{ $message->created_at }}</td>
 										</tr>
@@ -80,7 +80,7 @@
 								</tr>
 								@foreach ($sent as $message)
 									<tr class="message" onclick="location.href='/message/{{ $message->id }}'">
-										<td class="col-md-2">{{ App\User::find($message->receiver_id)->name }}</td>
+										<td class="col-md-2">{{ $message->receiver->name }}</td>
 										<td class="col-md-7">{{ $message->subject }}</td>
 										<td class="col-md-3">{{ $message->created_at }}</td>
 									</tr>

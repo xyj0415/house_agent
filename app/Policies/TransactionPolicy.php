@@ -32,12 +32,12 @@ class TransactionPolicy
 
     public function see_transaction(User $user, Transaction $transaction)
     {
-        return !(self::is_provider($user, $transaction) && ($transaction->status == 'buyer_to_agent'));
+        return !(self::is_provider($user, $transaction) && ($transaction->status == 'buyer to agent'));
     }
 
     public function contact_provider(User $user, Transaction $transaction)
     {
-        return self::is_agent($user, $transaction) && ($transaction->status == 'buyer_to_agent');
+        return self::is_agent($user, $transaction) && ($transaction->status == 'buyer to agent');
     }
 
     public function start_transaction(User $user, Transaction $transaction)

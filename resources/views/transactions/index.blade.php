@@ -16,7 +16,7 @@
 			@can('see_transaction', $transaction)
 				<tr>
 					<td>
-						@if ($transaction->status == 'buyer_to_agent' || $transaction->status == 'agent to provider')
+						@if ($transaction->status == 'buyer to agent' || $transaction->status == 'agent to provider')
 							Contacting
 						@else
 							{{ ucfirst($transaction->status) }}

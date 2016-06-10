@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\House;
-use App\Image;
-use App\Message;
+use Auth;
+use User;
+use House;
+use Image;
+use Message;
 use Illuminate\Http\Request;
 use App\Http\Requests\HouseRequest;
 
@@ -100,7 +101,7 @@ class HousesController extends Controller
     {
         $house = self::get_house($type, $id);
 
-        if (\Auth::user()->cannot('edit', $house))
+        if (Auth::user()->cannot('edit', $house))
         {
             flash()->error('Error!', 'You are not allowed to edit the information!');
             return redirect()->back();

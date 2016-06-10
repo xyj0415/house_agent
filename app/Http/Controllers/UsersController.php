@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\User;
-use App\House;
-use App\Message;
-use App\Transaction;
+use User;
+use House;
+use Message;
+use Transaction;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -35,7 +35,7 @@ class UsersController extends Controller
 
     public function upgradeRequest()
     {
-    	AUth::user()->update(['type' => 'unauthorizedseller']);
+    	Auth::user()->update(['type' => 'unauthorizedseller']);
 
     	flash()->info('Your request has been sent!', 'Please wait for the authorization.');
 

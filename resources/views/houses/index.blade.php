@@ -74,12 +74,13 @@
 			</form>
 		</div>
 		<div class="col-md-9">
-				@if (sizeof($houses) == 0)
-					<h2>No matches.</h2>
-				@endif
-				@foreach ($houses as $house)
-					@include('components.single_house')
-				@endforeach
+		<div class="col-md-9">
+			@if (sizeof($houses) == 0)
+				<h2>No matches.</h2>
+			@endif
+			@foreach ($houses as $house)
+				@include('components.single_house')
+			@endforeach
 		</div>
 	</div>
 @stop
