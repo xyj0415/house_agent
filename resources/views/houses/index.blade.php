@@ -74,7 +74,6 @@
 			</form>
 		</div>
 		<div class="col-md-9">
-		<div class="col-md-9">
 			@if (sizeof($houses) == 0)
 				<h2>No matches.</h2>
 			@endif
