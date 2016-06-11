@@ -6,6 +6,7 @@ use Auth;
 use User;
 use House;
 use Message;
+use Transaction;
 use Illuminate\Http\Request;
 
 class MessageGenerator
@@ -57,7 +58,7 @@ class MessageGenerator
 		$message = $this->make_notification_sender();
 		$message->receiver_id = $request->input('agent_id');
 		$message->subject = "House Authentication Request";
-		$message->content = 'The seller '. User::find($request->input('provider_id'))->name . ' wants to ' . $request->input('type') . ' a house! Please check in the authentication page.';
+		$message->content = 'The provider '. User::find($request->input('provider_id'))->name . ' wants to ' . $request->input('type') . ' a house! Please check in the authentication page.';
        	return $this->save($message);
 	}
 
@@ -78,6 +79,38 @@ class MessageGenerator
 		$message->receiver_id = $house->provider_id;
 		$message->subject = "House Authentication Failed";
 		$message->content = "Sorry, the agent " . User::find($house->agent_id)->name . " has rejected your house " . $house->name . ".";
+		return $this->save($message);
+	}
+
+	public function transaction_cancel(Request $request)
+	{
+		$transaction = Transaction::find($request->input('id'));
+		$house = House::find($transaction->house_id);
+		if (\Auth::user()->id == $house->provider_id)
+		{
+			$type = 'provider';
+		}
+		else
+		{
+			$type = 'seller';
+		}
+		$message = $this->make_notification_sender();
+		$message->receiver_id = $house->agent_id;
+		$message->subject = "Transaction cancelled";
+		$message->content = "Sorry, the " . $type . " " . \Auth::user()->name . " cancelled the transaction.";
+		$this->save($message);
+
+		$message = $this->make_notification_sender();
+		if ($type == 'provider')
+		{
+			$message->receiver_id = $transaction->buyer_id;
+		}
+		else
+		{
+			$message->receiver_id = $house->provider_id;
+		}
+		$message->subject = "Transaction cancelled";
+		$message->content = "Sorry, the " . $type . " " . \Auth::user()->name . " cancelled the transaction.";
 		return $this->save($message);
 	}
 }

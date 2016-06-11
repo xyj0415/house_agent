@@ -13,12 +13,12 @@
 					buyer (Waiting for authorization...)
 				@endif
 
-				@if (($user->id == $current_user->id) && ($current_user->type == 'buyer'))
+				@can('become_seller', $user)
 					<form method="POST" action="/user/upgraderequest" style="display:inline">
 						{{ csrf_field() }}
-						<button type="submit" class="btn btn-primary">Become a Seller</button>
+						<button type="submit" class="btn btn-primary btn-sm">Become a Seller</button>
 					</form>
-				@endif
+				@endcan
 			</td>
 		</tr>
 		<tr>
@@ -46,9 +46,5 @@
 			</td>
 		</tr>
 	</table>
-
-	@can('edit_profile', $user)
-		<a class="btn btn-primary" href="/user/{{ $user->id }}/edit">Edit Profile</a>
-	@endcan
 
 @stop

@@ -5,6 +5,7 @@
 	<hr>
 	<table class="table table-bordered">
 		<tr>
+			<th>ID</th>
 			<th>Status</th>
 			<th>House</th>
 			<th>Buyer</th>
@@ -15,6 +16,7 @@
 		@foreach ($transactions as $transaction)
 			@can('see_transaction', $transaction)
 				<tr>
+					<td>{{ $transaction->id }}</td>
 					<td>
 						@if ($transaction->status == 'buyer to agent' || $transaction->status == 'agent to provider')
 							Contacting

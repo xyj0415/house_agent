@@ -52,6 +52,8 @@ class TransactionsController extends Controller
             $transaction->update(['status' => 'cancelled']);
 
             House::find($transaction->house_id)->update(['status' => 'available']);
+
+            messageGen()->transaction_cancel($request);
         }
         elseif ($request->action == 'continue')
         {
