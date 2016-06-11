@@ -3,9 +3,9 @@
 namespace App\Http\Utilities;
 
 use Auth;
-use App\User;
-use App\House;
-use App\Message;
+use User;
+use House;
+use Message;
 use Illuminate\Http\Request;
 
 class MessageGenerator
@@ -59,5 +59,25 @@ class MessageGenerator
 		$message->subject = "House Authentication Request";
 		$message->content = 'The seller '. User::find($request->input('provider_id'))->name . ' wants to ' . $request->input('type') . ' a house! Please check in the authentication page.';
        	return $this->save($message);
+	}
+
+	public function authentication_success(Request $request)
+	{
+		$house = House::find($request->input('house_id'));
+		$message = $this->make_notification_sender();
+		$message->receiver_id = $house->provider_id;
+		$message->subject = "House Authentication Success";
+		$message->content = "The agent " . User::find($house->agent_id)->name . " has authenticated your house " . $house->name . ". The house is available now.";
+		return $this->save($message);
+	}
+
+	public function authentication_fail(Request $request)
+	{
+		$house = House::find($request->input('house_id'));
+		$message = $this->make_notification_sender();
+		$message->receiver_id = $house->provider_id;
+		$message->subject = "House Authentication Failed";
+		$message->content = "Sorry, the agent " . User::find($house->agent_id)->name . " has rejected your house " . $house->name . ".";
+		return $this->save($message);
 	}
 }

@@ -4,9 +4,23 @@ var cityData={
 	],
 	"Shanghai":[
 		"",
-		"MinHang",
-		"HuangPu",
-		"PuDong"
+		"Baoshan",
+		"Changning",
+		"Chongming",
+		"Fengxian",
+		"Hongkou",
+		"Huangpu",
+		"Jiading",
+		"Jing'an",
+		"Jinshan",
+		"Minhang",
+		"Pudong",
+		"Putuo",
+		"Qingpu",
+		"Songjiang",
+		"Xuhui",
+		"Yangpu",
+		"Zhabei",
 	],
 	"BeiJing":
 	[

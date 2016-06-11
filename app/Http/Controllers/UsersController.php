@@ -71,9 +71,15 @@ class UsersController extends Controller
             $house_id = $request->get('house_id');
 
             if ($action == 'agree')
+            {
                 House::find($house_id)->update(['status' => 'available']);
+                messageGen()->authentication_success($request);
+            }
             else if ($action == 'reject')
+            {
                 House::find($house_id)->update(['status' => 'rejected']);
+                messageGen()->authentication_fail($request);
+            }
         }
 
         return redirect()->back();

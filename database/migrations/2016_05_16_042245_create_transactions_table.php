@@ -15,7 +15,7 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('house_id');
-            $table->integer('house_id')->references('id')->on('houses')->onDelete('cascade');
+            $table->foreign('house_id')->references('id')->on('houses')->onDelete('cascade');
             $table->integer('buyer_id');
             $table->foreign('buyer_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('status');

@@ -17,7 +17,7 @@ class HousePolicy
 
     public function delete(User $user, House $house)
     {
-    	return ($user->id == $house->provider_id) && ($house->status == 'available');
+    	return ($user->id == $house->provider_id) && ($house->status == 'available' || $house->status == 'unauthenticated');
     }
 
     public function contact(User $user, House $house)

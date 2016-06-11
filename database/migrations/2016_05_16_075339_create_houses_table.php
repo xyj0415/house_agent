@@ -26,6 +26,7 @@ class CreateHousesTable extends Migration
             $table->string('address');
             $table->integer('price');
             $table->integer('area');
+            $table->integer('buildyear');
             $table->text('description');
             $table->timestamps();
         });

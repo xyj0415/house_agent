@@ -65,14 +65,30 @@
 							</p>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-6">
 					<div class="row">
 						<div class="col-md-2">
 							<p class="gray-text">Area:</p>
 						</div>
 						<div class="col-md-10">
 							<p>{{ $house->area }}m<sup>2</sup></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-2">
+							<p class="gray-text">City:</p>
+						</div>
+						<div class="col-md-10">
+							<p>{{ $house->city }}</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<p class="gray-text">District:</p>
+						</div>
+						<div class="col-md-10">
+							<p>{{ $house->district }}</p>
 						</div>
 					</div>
 					<div class="row">

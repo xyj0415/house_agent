@@ -17,6 +17,7 @@ class House extends Model
     	'address',
     	'price',
         'area',
+        'buildeyear',
     	'description'
     ];
 

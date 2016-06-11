@@ -10,11 +10,16 @@
 		<div class="col-md-6">
 			<h3>{{ $house->name }}</h3>
 			<p>
+				<span>{{ $house->city }}</span>
+				&nbsp;&nbsp;|&nbsp;&nbsp;
+				<span>{{ $house->district }}</span>
+			</p>
+			<p>
 				<span>{{ ucfirst($house->status) }}</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<span>{{ $house->area }}m<sup>2</sup></span>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<span>built in 2009</span>
+				<span>built in {{ $house->buildyear }}</span>
 				@if ($house->type == 'sell')
 					&nbsp;&nbsp;|&nbsp;&nbsp;<span>${{ round($house->price / $house->area) }}/m<sup>2</sup></span>
 				@endif

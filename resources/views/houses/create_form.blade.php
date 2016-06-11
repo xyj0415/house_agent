@@ -13,7 +13,7 @@
 <div class="form-group">
 	<label for="city" class="col-md-2 control-label">City:</label>
 	<div class="col-md-10">
-		<select id="city" name="city" class="form-control">
+		<select id="city" name="city" class="form-control" required="required">
 			<option value=""></option>
 		</select>
 	</div>
@@ -23,7 +23,7 @@
 <div class="form-group">
 	<label for="district" class="col-md-2 control-label">District:</label>
 	<div class="col-md-10">
-		<select id="district" name="district" class="form-control">
+		<select id="district" name="district" class="form-control" required="required">
 			<option value=""></option>
 		</select>
 	</div>
@@ -55,6 +55,19 @@
 	<label for="area" class="col-md-2 control-label">Area:</label>
 	<div class="col-md-10">
 		<input type="text" name="area" id="area" class="form-control" value="{{ old('area') }}" required="required">
+	</div>
+</div>
+
+
+<div class="form-group">
+	<label for="buildyear" class="col-md-2 control-label">Built in:</label>
+	<div class="col-md-10">
+		<select name="buildyear" id="buildeyear" class="form-control" required="required">
+			<option value=""></option>
+			@for ($i = 1990; $i <= 2016; $i++)
+				<option value="{{ $i }}">{{ $i }}</option>
+			@endfor
+		</select>
 	</div>
 </div>
 
