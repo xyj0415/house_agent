@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('scripts')
+	<script src="/js/district_select.js"></script>
+@stop
+
 @section('styles')
 	.house
 	{
@@ -23,7 +27,7 @@
 
 @section('content')
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-3" style="padding: 10px; border:dotted; border-width:1px; border-radius: 5px;">
 			<form method="GET">
 				<div class="form-group">
 					<label for="name" class="control-label">Name:</label>
@@ -33,9 +37,12 @@
 					<label for="city" class="control-label">Choose City:</label>
 					<select name="city" class="form-control" id="city">
 						<option value=""></option>
-						<option value="shanghai">Shanghai</option>
-						<option value="beijing">Beijing</option>
-						<option value="guangzhou">Guangzhou</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="district" class="control-label">Choose District:</label>
+					<select name="district" class="form-control" id="district">
+						<option value=""></option>
 					</select>
 				</div>
 				<div class="form-group">

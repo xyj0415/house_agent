@@ -1,5 +1,3 @@
-@inject('cities', 'App\Http\Utilities\City')
-
 {{ csrf_field() }}
 <input type="hidden" name="provider_id" value="{{ $current_user->id }}">
 <input type="hidden" name="type" value="{{ $type }}">
@@ -16,9 +14,7 @@
 	<label for="city" class="col-md-2 control-label">City:</label>
 	<div class="col-md-10">
 		<select id="city" name="city" class="form-control">
-			@foreach ($cities::all() as $city => $districts)
-				<option value="{{ $city }}">{{ $city }}</option>
-			@endforeach
+			<option value=""></option>
 		</select>
 	</div>
 </div>
@@ -27,7 +23,9 @@
 <div class="form-group">
 	<label for="district" class="col-md-2 control-label">District:</label>
 	<div class="col-md-10">
-		<input type="text" name="district" id="district" class="form-control" value="{{ old('district') }}" required="required">
+		<select id="district" name="district" class="form-control">
+			<option value=""></option>
+		</select>
 	</div>
 </div>
 

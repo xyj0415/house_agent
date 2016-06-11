@@ -19,9 +19,7 @@
 
 	<script src="/js/libs.js "></script>
 	@include('components.flash')
-	<script>
-		@yield('scripts')
-	</script>
+	@yield('scripts')
 	@include('components.footer')
 </body>
 </html>

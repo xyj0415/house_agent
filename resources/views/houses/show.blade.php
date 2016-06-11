@@ -141,9 +141,11 @@
 @stop
 
 @section('scripts')
+<script>
 	function show(image)
 	{
 		var path = image.getAttribute('src');
 		document.getElementById("image_holder").setAttribute("src", path);
 	}
+</script>
 @stop

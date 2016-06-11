@@ -41,6 +41,10 @@ class HousesController extends Controller
         {
             $builder = $builder->where('city', $request->input('city'));
         }
+        if ($request->has('district'))
+        {
+            $builder = $builder->where('district', $request->input('district'));
+        }
         if ($request->has('minarea'))
         {
             $builder = $builder->where('area', '>=', $request->input('minarea'));
