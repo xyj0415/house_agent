@@ -10,11 +10,7 @@
 				<label for="sender" class="col-md-2 control-label">From:</label>
 				<div class="col-md-10">
 					<p class="form-control-static">
-						@if ($message->sender_id != 0)
 							<a href="/user/{{ $message->sender_id }}">{{ $user::find($message->sender_id)->name }}</a>&lt;{{ $user::find($message->sender_id)->email }}&gt;
-						@else
-							System Notification
-						@endif
 					</p>
 				</div>
 			</div>
