@@ -21,13 +21,13 @@
 				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<span>built in {{ $house->buildyear }}</span>
 				@if ($house->type == 'sell')
-					&nbsp;&nbsp;|&nbsp;&nbsp;<span>${{ round($house->price / $house->area) }}/m<sup>2</sup></span>
+					&nbsp;&nbsp;|&nbsp;&nbsp;<span>￥{{ round($house->price / $house->area) }}/m<sup>2</sup></span>
 				@endif
 			</p>
 		</div>
 		<div class="col-md-3">
 			<h3 style="color:DarkOrange;">
-				${{ number_format($house->price) }}
+				￥{{ number_format($house->price) }}
 				@if ($house->type == 'rent')
 					/month
 				@endif

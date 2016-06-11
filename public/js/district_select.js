@@ -22,11 +22,24 @@ var cityData={
 		"Yangpu",
 		"Zhabei",
 	],
-	"BeiJing":
+	"Beijing":
 	[
-		"",
+		"Changping",
+		"ChaoYang",
+		"Daxing",
+		"Dongcheng",
+		"Fangshan",
+		"Fengtai",
 		"HaiDian",
-		"ChaoYang"
+		"Huairou",
+		"Mentougou",
+		"Miyun",
+		"Pinggu",
+		"Shijingshan",
+		"Shunyi",
+		"Tongzhou",
+		"Xicheng",
+		"Yanqing",
 	]
 };
 

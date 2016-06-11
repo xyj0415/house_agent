@@ -45,7 +45,7 @@
 						</div>
 						<div class="col-md-10">
 							<p>
-								${{ number_format($house->price) }}
+								￥{{ number_format($house->price) }}
 								@if($house->type == 'rent')
 									/ month
 								@endif
@@ -58,7 +58,7 @@
 						</div>
 						<div class="col-md-10">
 							<p>
-								${{ number_format(round($house->price / $house->area)) }}/m<sup>2</sup>
+								￥{{ number_format(round($house->price / $house->area)) }}/m<sup>2</sup>
 								@if($house->type == 'rent')
 									/ month
 								@endif
@@ -161,7 +161,7 @@
 	function show(image)
 	{
 		var path = image.getAttribute('src');
-		document.getElementById("image_holder").setAttribute("src", path);
+		$("#image_holder").attr("src", path);
 	}
 </script>
 @stop
