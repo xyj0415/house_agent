@@ -33,6 +33,10 @@ class HousesController extends Controller
         {
             $builder = $builder->where('status', 'available');
         }
+        else
+        {
+            $builder = $builder->where('status', '<>', 'removed')->where('status', '<>', 'rejected');
+        }
         if ($request->has('name'))
         {
             $builder = $builder->where('name', 'like', '%' . $request->input('name') . '%');
@@ -150,6 +154,6 @@ class HousesController extends Controller
         $house = self::get_house($type, $id);
         $house->update(['status' => 'removed']);
 
-        return redirect()->back();
+        return redirect('/for_' . $type);
     }
 }

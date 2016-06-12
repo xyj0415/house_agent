@@ -16,7 +16,7 @@ class Controller extends BaseController
     public function __construct()
     {
     	view()->share('current_user', \Auth::user());
-    	if (Auth::check())
+    	if (\Auth::check())
     	{
 	    	view()->share('unread_messages_num', \App\Message::where('hasread', 0)->where('receiver_id', \Auth::user()->id)->count());
 	    	view()->share('unprocessed_user_auth_num', \App\User::where('type', 'unauthorizedseller')->count());

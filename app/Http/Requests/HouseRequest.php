@@ -30,6 +30,7 @@ class HouseRequest extends Request
             'address'       => 'required',
             'price'         => 'required|integer',
             'area'          => 'required|integer',
+            'buildyear'     => 'required|integer',
             'description'   => 'required',
         ];
     }

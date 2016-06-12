@@ -27,7 +27,7 @@ class TransactionPolicy
 
     protected function is_available($status)
     {
-        return ($status != 'finished') && ($status != 'cancelled');
+        return ($status != 'finished') && ($status != 'cancelled') && ($status != 'both confirmed');
     }
 
     public function see_transaction(User $user, Transaction $transaction)
